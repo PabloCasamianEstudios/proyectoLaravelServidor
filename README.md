@@ -1,6 +1,5 @@
-# Club Secreto - Aplicación Web de Gestión
+#  Aplicación Web de Gestión - CRUD
 
-Por la naturaleza del proyecto y sus requisitos, he decidido hacer el sitio web sobre un Club Secreto
 ---
 
 ## 1º Crear el proyecto 
