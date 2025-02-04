@@ -16,7 +16,7 @@ He seleccionado:
 - PhpUnit - para las pruebas unitarias
 - mySql - como gestor
 Me dará un error porque no puede ejecutar las migraciones.
-- Instalo [./docker-compose.yaml](docker-compose.yaml)
+- Creo un fichero [./docker-compose.yaml](docker-compose.yaml)
 
 ## 2º Hacer un diseño del sitio web
 Para esta actividad se pueden usar herramientas como Figma, Balsamiq o draw.io
