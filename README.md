@@ -1,5 +1,9 @@
 #  Aplicación Web de Gestión - CRUD
 
+Una aplicación desarrollada en Laravel con la que crear, leer, modificar y eliminar instancias de una tabla en una base de datos. 
+
+Haciendo uso de herramientas como DaisyUI, Talwind o SweetAlerts
+
 ---
 
 ## 1º Crear el proyecto 
