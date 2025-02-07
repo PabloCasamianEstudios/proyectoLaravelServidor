@@ -30,5 +30,43 @@ Creamos el directorio `/resources/views/components/layouts`
 Ahí crearemos nuestros layouts customizados:
 - Plantilla base:
 `layout.blade.php`
+* Añadimos al HEAD del fichero: '@vite(["resources/css/app.css"])'
+
 - Plantillas de componentes de la plantilla:
 `footer.blade.php, header.blade.php, nav.blade.php...`
+
+### INTRODUCIR DENTRO del LAYOUT los otros LAYOUTS [header, nav, footer...]
+Para ello, dentro del body los llamamos así: 
+`<x-layouts.{nombre_del_layout} />`
+
+## 4º Crear páginas
+Creamos dentro de `/resources/views` las páginas de nuestro sitio.
+
+> [!IMPORTANT]  
+> RODEAMOS el código que vayamos a meter en el sitio con: 
+> ```<x-layouts.layout> . . . </x-layouts.layout>```
+
+De este modo tomará el formato del layout.
+
+> [!NOTE]  
+>  Para que se muestre TODO el contenido dentro de dichas páginas, 
+> hay que utilizar `{{$slot}}` dentro del layout, para que se inyecte dinámicamente el contenido.
+
+Posteriormente, es DE VITAL IMPORTANCIA, añadir la ruta del nuevo sitio al fichero *`web.php`*
+disponible en la ruta: `routes/web.php`
+
+Ahí añadiremos las nuevas rutas:
+**Ejemplo:**
+```
+Route::get('/', function () {
+return view('index');
+});
+```
+
+## 5º Añadir imágenes
+
+Para añadir imágenes:
+- Primero creamos una carpeta `images` dentro del directorio public.
+- Después añadimos ahí las imágenes
+- Finalmente las llamamos desde nuestro: Creando una etiqueta html de tipo img. Y añadíendo en el atributo src='' --> `{{"images/[nombredelaimagen.png|.jpg]"}}`
+
