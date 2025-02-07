@@ -70,3 +70,10 @@ Para añadir imágenes:
 - Después añadimos ahí las imágenes
 - Finalmente las llamamos desde nuestro: Creando una etiqueta html de tipo img. Y añadíendo en el atributo src='' --> `{{"images/[nombredelaimagen.png|.jpg]"}}`
 
+## 5º @auth y @guess
+Ambas etiquetas tienen una función y utilidad parecida.
+**@auth** se utiliza para enmarcar un segmento del código que solo estará disponible para usuarios AUTENTICADOS.
+Se marca el final con **@endauth**
+
+**@guess** se utiliza para remarcar un segmento del código SOLO VISIBLE para usuarios __NO__ AUTENTICADOS.
+Su final se detalla con **@endguess**
