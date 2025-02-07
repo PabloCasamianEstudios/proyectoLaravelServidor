@@ -1,7 +1,7 @@
-<header class="md:h-10v bg-header flex flex-col md:flex-row   justify-between items-center p-3">
+<header class="md:h-10v bg-header flex flex-row md:flex-row   justify-between items-center p-3">
+
     <img class="w-1/3 md:w-1/12 max-h-full p-1" src="{{asset ("images/logo.png")}}" alt="logo">
-    <h1 class=" hidden md:block
-    text-gray-700 text-7xl">CLUB SECRETO</h1>
+    <h1 class="text-gray-700 text-7xl">CLUB SECRETO</h1>
     <div>
         @auth
             {{auth()->user()->name}}
@@ -11,8 +11,11 @@
             </form>
         @endauth
         @guest
-            <a class="btn btn-glass" href="login">Loginn</a>
-            <a class="btn btn-glass" href="register">Register</a>
+            <div class="flex flex-row gap-5">
+                <a class="btn btn-glass" href="login">Login</a>
+                <a class="btn btn-glass" href="register">Register</a>
+            </div>
+
 
 
         @endguest

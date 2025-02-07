@@ -13,6 +13,5 @@
 <x-layouts.header/>
 <x-layouts.nav/>
 {{$slot}}
-
 </body>
 </html>

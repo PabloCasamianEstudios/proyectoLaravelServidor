@@ -30,7 +30,6 @@ Creamos el directorio `/resources/views/components/layouts`
 Ahí crearemos nuestros layouts customizados:
 - Plantilla base:
 `layout.blade.php`
-* Añadimos al HEAD del fichero: '@vite(["resources/css/app.css"])'
 
 - Plantillas de componentes de la plantilla:
 `footer.blade.php, header.blade.php, nav.blade.php...`
@@ -77,3 +76,20 @@ Se marca el final con **@endauth**
 
 **@guess** se utiliza para remarcar un segmento del código SOLO VISIBLE para usuarios __NO__ AUTENTICADOS.
 Su final se detalla con **@endguess**
+
+## 5º Cargar los estilos
+
+Instalamos DaisyUI utilizando: `npm i -D daisyui@latest`
+
+Añadimos al head de `/resources/views/components/layouts/layout.blade.php`:
+```
+@vite(["resources/css/app.css"])
+```
+y para concluir, modificamos `tailwind.config.js`
+La sección plugins debería quedar así:
+```
+plugins: [
+require('@tailwindcss/forms'),
+require("daisyui")
+],
+```
