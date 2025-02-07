@@ -93,3 +93,7 @@ require('@tailwindcss/forms'),
 require("daisyui")
 ],
 ```
+
+> [!TIP]
+> Utilizar los presets de daisyui.com
+
