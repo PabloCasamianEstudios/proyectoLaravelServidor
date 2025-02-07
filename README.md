@@ -24,3 +24,11 @@ Me dará un error porque no puede ejecutar las migraciones.
 
 ## 2º Hacer un diseño del sitio web
 Para esta actividad se pueden usar herramientas como Figma, Balsamiq o draw.io
+
+## 3º Crear Layout BASE del sitio web
+Creamos el directorio `/resources/views/components/layouts`
+Ahí crearemos nuestros layouts customizados:
+- Plantilla base:
+`layout.blade.php`
+- Plantillas de componentes de la plantilla:
+`footer.blade.php, header.blade.php, nav.blade.php...`
