@@ -6,10 +6,10 @@
             <div class="hero-overlay bg-opacity-60"></div>
             <div class="hero-content text-neutral-content text-center">
                 <div class="max-w-md">
-                    <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+                    <h1 class="mb-5 text-5xl font-bold">¡Bienvenido!</h1>
                     <p class="mb-5">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Al club secreto secretoso, más secreto y secretoso
+                        de todos los clubs secretos y secretosos.
                     </p>
                     <button class="btn btn-primary">Get Started</button>
                 </div>
@@ -24,13 +24,13 @@
                 <div class="hero-overlay bg-opacity-60"></div>
                 <div class="hero-content text-neutral-content text-center">
                     <div class="max-w-md">
-                        <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+                        <h1 class="mb-5 text-5xl font-bold">Bienvenido!</h1>
                         <p class="mb-5">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                            Al club secreto secretoso, el más secreto y secretoso
+                            de todos los clubs secretos y secretosos.
                         </p>
                         <button class="btn btn-primary">Get Started</button>
-                        <a href="{{route(")}}">BOTON</a>
+                        <a href="{{route("")}}"BOTON</a>
                     </div>
                 </div>
             </div>

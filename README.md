@@ -97,3 +97,5 @@ require("daisyui")
 > [!TIP]
 > Utilizar los presets de daisyui.com
 
+
+# 8 
