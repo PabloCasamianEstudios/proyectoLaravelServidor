@@ -41,6 +41,10 @@ Para ello, dentro del body los llamamos así:
 ## 4º Crear páginas
 Creamos dentro de `/resources/views` las páginas de nuestro sitio.
 
+Para las páginas de mi sitio que estén más orientadas a su temática principal; añadir, eliminar, modificar o leer miembros del club,
+crearé una carpeta llamada *'club'*. 
+
+
 > [!IMPORTANT]  
 > RODEAMOS el código que vayamos a meter en el sitio con: 
 > ```<x-layouts.layout> . . . </x-layouts.layout>```
@@ -142,4 +146,54 @@ y metemos todo lo que hay en nuestra estructura de layout:
 Y repetimos **EXACTAMENTE** lo mismo pero con la ruta:
 `/resources/vies/auth/register.blade.php`
 
-# 9 
+# 9 Estilos customizados
+Si queremos añadir nuestros estilos propios, como clases por ejemplo,
+podemos ir al fichero `/resources/css/app.css`
+
+y añadir de esta forma los estilos propios, debajo de los componentes de tailwind, de esta forma:
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.header {
+    @apply h-15v bg-header
+    flex flex-row justify-between px-3 items-center
+}
+```
+Vayamos por partes:
+* @apply
+
+Puedes crear dentro de `themes` en `tailwind.config.js` especificaciones para usar en tus estilos.
+Aquí un ejemplo:
+`
+theme: {
+extend: {
+fontFamily: {
+sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+},
+
+            height:{
+                "10v":"10vh",
+                "15v":"15vh",
+                "65v":"65vh"
+            },
+
+            colors: {
+
+                "header":"#003459",
+                "nav":"#00A7E1",
+                "main":"#FFFFFF",
+                "footer":"#00171F"
+            },
+        },
+    },
+`
+
+
+* Elementos de Tailwind
+
+Puedes usar las clases preestablecidas es Tailwind: `flex flex-row justify-between px-3 items-center`
+
+* CSS a lo bruto
+
+Puedes añadir CSS como si la tecnología fuese una mera sugerencia para ti.
