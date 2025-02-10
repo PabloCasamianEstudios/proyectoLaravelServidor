@@ -62,6 +62,21 @@ return view('index');
 });
 ```
 
+Otra forma en una sola línea sería:
+``
+Route::view('/about', 'about')->name('about');
+``
+Entendiendo que aquí, /about es la sección de la URL, about el sitio, y name, como queramos llamarlo desde la función **{{route(NOMBRE_DE_LA_RUTA)}}**
+
+* ### LLAMAR A LAS RUTAS:
+
+Para llamar a las rutas desde el html, lo que hay que haces es poner: `{{route('nombre_de_la_ruta')}}`
+
+__Ejemplo:__
+```
+href="{{route('news')}}
+```
+
 ## 5º Añadir imágenes
 
 Para añadir imágenes:
@@ -98,4 +113,33 @@ require("daisyui")
 > Utilizar los presets de daisyui.com
 
 
-# 8 
+# 8 Implementar Login y Register a nuestro Layout
+
+Primero vamos a hacer que al registrarse o iniciar sesion, los usuarios accedan a mi sitio web.
+
+En `/app/Http/Controllers/Auth/AuthenticatedSessionController.php`
+Modificamos esta línea *return redirect()->intended(route('RUTA_A_LA_QUE_NOS_ENVIA', absolute: false));* método __store__
+y añadimos nuestro sitio. En mi caso *'home'*
+
+
+En `/app/Http/Controllers/Auth/RegisteredUserController.php`
+Modificamos esta línea *return redirect()->intended(route('RUTA_A_LA_QUE_NOS_ENVIA', absolute: false));* método __store__
+y añadimos nuestro sitio. En mi caso *'home'*
+
+### Darle nuestro formato:
+Vamos a
+`/resources/vies/auth/login.blade.php`
+
+y metemos todo lo que hay en nuestra estructura de layout:
+```
+<x-layouts.layout title="LOGIN">
+    <div class="flex flex-row justify-center items-center min-h-full bg-gray-300">
+        <div class="bg-white rounded-2xl p-5">
+```
+*Nota:* Los divs son únicamente estéticos.
+
+
+Y repetimos **EXACTAMENTE** lo mismo pero con la ruta:
+`/resources/vies/auth/register.blade.php`
+
+# 9 

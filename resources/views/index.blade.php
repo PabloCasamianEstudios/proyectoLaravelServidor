@@ -30,7 +30,7 @@
                             de todos los clubs secretos y secretosos.
                         </p>
                         <button class="btn btn-primary">Get Started</button>
-                        <a href="{{route("")}}"BOTON</a>
+                        <a href="{{}}"BOTON</a>
                     </div>
                 </div>
             </div>
