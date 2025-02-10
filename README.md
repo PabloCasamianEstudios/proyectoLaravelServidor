@@ -197,3 +197,16 @@ Puedes usar las clases preestablecidas es Tailwind: `flex flex-row justify-betwe
 * CSS a lo bruto
 
 Puedes añadir CSS como si la tecnología fuese una mera sugerencia para ti.
+
+# 10º Crear modelos del CRUD
+Para empezar usamos en la terminal el comando: ```php artisan make:model miembro -a```
+y se genera el modelo automáticamente.
+
+Y añado en 'web.php' la nueva ruta con el controlador que acabo de generar.
+```Route::resources('miembros', MiembroController::class);```
+
+> [!WARNING]
+> NO OLVIDARSE DE IMPORTAR EL CONTROLADOR DENTRO DE `web.php` o perderás tiempo.
+
+
+- Si todo esto fue bien, ya debería de ser posible acceder a: `http://127.0.0.1:8000/miembros`

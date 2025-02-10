@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('index');
@@ -12,6 +14,8 @@ Route::get('/', function () {
 Route::view('/about', 'about')->name('about');
 Route::view('/news', 'news')->name('news');
 
+
+Route::resource('miembros', MiembroController::class);
 
 // Rutas por defecto
 
