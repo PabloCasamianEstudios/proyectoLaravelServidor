@@ -43,4 +43,9 @@ body {
     background-color: var(--second-bg-color);
 }
 
-
+.animacionScaleHover{
+    transition: all 0.5s ease-in-out;
+}
+.animacionScaleHover:hover{
+    transform: scale(1.1);
+}
