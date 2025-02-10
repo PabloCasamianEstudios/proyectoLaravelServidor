@@ -10,8 +10,11 @@
     @vite(["resources/css/app.css"])
 </head>
 <body>
+
 <x-layouts.header/>
-<x-layouts.nav/>
+@auth
+    <x-layouts.nav/>
+@endauth
 {{$slot}}
 <x-layouts.footer/>
 </body>

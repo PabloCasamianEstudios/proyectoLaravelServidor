@@ -1,4 +1,4 @@
-<header class="md:h-10v bg-header flex flex-row md:flex-row   justify-around items-center p-3">
+<header class="header md:h-10v bg-header flex flex-row md:flex-row   justify-around items-center p-3">
 
     <img class="w-1/3 md:w-1/12 max-h-full p-1" src="{{asset ("images/logo.png")}}" alt="logo">
     <h1 class="text-gray-700 text-7xl">CLUB SECRETO</h1>
@@ -7,7 +7,7 @@
             {{auth()->user()->name}}
             <form action="{{route("logout")}}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-glass">Logout</button>
+                <button type="submit" class="btn btn-error">Logout</button>
             </form>
         @endauth
         @guest

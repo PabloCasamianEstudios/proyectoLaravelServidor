@@ -117,7 +117,7 @@ require("daisyui")
 > Utilizar los presets de daisyui.com
 
 
-# 8 Implementar Login y Register a nuestro Layout
+# 8º Implementar Login y Register a nuestro Layout
 
 Primero vamos a hacer que al registrarse o iniciar sesion, los usuarios accedan a mi sitio web.
 
@@ -146,7 +146,7 @@ y metemos todo lo que hay en nuestra estructura de layout:
 Y repetimos **EXACTAMENTE** lo mismo pero con la ruta:
 `/resources/vies/auth/register.blade.php`
 
-# 9 Estilos customizados
+# 9º Estilos customizados
 Si queremos añadir nuestros estilos propios, como clases por ejemplo,
 podemos ir al fichero `/resources/css/app.css`
 
