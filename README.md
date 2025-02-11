@@ -245,4 +245,18 @@ class miembro extends Model{
 }
 ```
 
+# 12º Factories y Seeders
 
+Por defecto en `/database/factories` y en `/database/seeders` se generan los correspondientes
+ficheros, **GRACIAS A LOS PASOS PREVIOS**
+
+
+- En el seeder determinaremos cuantas instancias van a generarse dentro de la tabla:
+```
+public function run(): void
+    {
+        Miembro::factory()->count(20)->create();
+    }
+```
+
+yo voy a generar 20 de momento.
