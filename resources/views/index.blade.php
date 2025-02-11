@@ -2,7 +2,8 @@
     @guest
         <div
             class="hero min-h-screen"
-            style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+            style="background-image: url('{{ asset('images/ocultism.jpg') }}');"
+        >
             <div class="hero-overlay bg-opacity-60"></div>
             <div class="hero-content text-neutral-content text-center">
                 <div class="max-w-md">
@@ -11,7 +12,7 @@
                         Al club secreto secretoso, más secreto y secretoso
                         de todos los clubs secretos y secretosos.
                     </p>
-                    <button class="btn btn-primary">Get Started</button>
+                    <a class="btn btn-warning hover:scale-110 transition-transform duration-300" href="{{route('about')}}">Más sobre nosotros</a>
                 </div>
             </div>
         </div>

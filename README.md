@@ -96,6 +96,8 @@ Se marca el final con **@endauth**
 **@guest** se utiliza para remarcar un segmento del código SOLO VISIBLE para usuarios __NO__ AUTENTICADOS.
 Su final se detalla con **@endguest**
 
+*EXTRA:* **@csrf** sirve dentro de los formularios para verificar que el usuario está autenticado.
+
 ## 7º Cargar los estilos
 
 Instalamos DaisyUI utilizando: `npm i -D daisyui@latest`
@@ -210,3 +212,37 @@ Y añado en 'web.php' la nueva ruta con el controlador que acabo de generar.
 
 
 - Si todo esto fue bien, ya debería de ser posible acceder a: `http://127.0.0.1:8000/miembros`
+
+# 11º Crear TABLA
+
+Al crear el controlador se habrá generado en `/database/migrations/` un fichero
+terminado en el nombre del controlador que creamos, en este caso *"miembros"*
+
+Dentro del Schema introducimos las cols de la tabla:
+```
+ Schema::create('miembros', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->integer('cod')->unique();
+            $table->date('fecha_entrada');
+            $table->integer('rango');
+        });
+```
+
+* ## Dar atributos al MODELO 
+- En mi caso "miembro"
+Dentro de `/app/Models/[nombre.php]`
+
+En este caso queda así:
+```
+class miembro extends Model{
+    /** @use HasFactory<\Database\Factories\MiembroFactory> */
+    use HasFactory;
+    protected $table = 'miembros';
+    protected $primaryKey = 'id';
+    protected $keyType = 'integer';
+    protected $timestamp = false;
+}
+```
+
+

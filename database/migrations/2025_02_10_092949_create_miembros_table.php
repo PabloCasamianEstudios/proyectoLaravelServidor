@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('miembros', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre');
+            $table->integer('cod')->unique();
+            $table->date('fecha_entrada');
+            $table->integer('rango');
         });
     }
 
