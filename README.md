@@ -260,3 +260,20 @@ public function run(): void
 ```
 
 yo voy a generar 20 de momento.
+
+y en el **DatabaseSeeder.php** añadimos el nuevo seeder:
+```
+public function run(): void
+    {
+        // User::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+        // ESTO DE AQUÍ ABAJO
+        $this->call([
+            MiembroSeeder::class,
+        ]);
+    }
+```
