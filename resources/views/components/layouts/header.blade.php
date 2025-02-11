@@ -26,12 +26,13 @@ flex flex-row md:flex-row justify-around items-center p-3">
     {{--Header movil--}}
     <div class="block md:hidden">
         <input type="checkbox" name="" id="menu-toggle" class=" peer hidden">
-        <label  class="text-2xl hover:cursor-pointer text-white" for="menu-toggle">
+
+        <label  class="hover:scale-110 transition-transform duration-300 text-5xl hover:cursor-pointer text-white " for="menu-toggle">
             &#9778;
         </label>
 
 
-        <div class="absolute hidden peer-checked:block bg-gray-300 p-3 rounded-xl flex flex-col">
+        <div class=" fixed right-0 hidden peer-checked:block bg-gray-300 p-3 rounded-xl flex flex-col">
         @auth
             {{auth()->user()->name}}
             <form action="{{route("logout")}}" method="post">

@@ -17,7 +17,10 @@ class MiembroFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "nombre"=>$this->faker->name(),
+            "cod"=>$this->faker->unique()->numberBetween(0,666),
+            "fecha_entrada"=>$this->faker->date(),
+            "rango"=>$this->faker->numberBetween(1,5)
         ];
     }
 }

@@ -281,8 +281,31 @@ public function run(): void
     }
 ```
 
+- En la factory de "miembro" (en `/database/factories/MiembroFactory.php`) voy a establecer los datos que quiero que genere:
+```
+ public function definition(): array
+    {
+        return [
+            "nombre"=>$this->faker->name(),
+            "cod"=>$this->faker->unique()->numberBetween(0,666),
+            "fecha_entrada"=>$this->faker->date(),
+            "rango"=>$this->faker->numberBetween(1,5)
+        ];
+    }
+```
+
+
 Y utilizamos `php artisan db:seed` o `php artisan migrate:refresh --seed`
 para generarlas.
+
+* Si queremos que cada vez que ejecutemos el comando se añadan "x" usuarios más, en lugar de reemplazar los que ya hay, quitamos este trozo de código de la *DatabaseSeeder.php*
+
+```
+User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+```
 
 
 # 13º PUNTOS DE RUPTURA
@@ -301,3 +324,6 @@ _Ejemplo_:
 ```
 class="md:hidden m:h-15v m:flex-row"
 ```
+
+
+
