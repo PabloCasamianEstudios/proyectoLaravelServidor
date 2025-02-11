@@ -1,5 +1,6 @@
 <x-layouts.layout title="LOGIN">
     <div class="flex flex-row justify-center items-center min-h-full bg-gray-300">
+        <!-- Session Status -->
         <div class="bg-white rounded-2xl p-5">
     <form method="POST" action="{{ route('register') }}">
         @csrf

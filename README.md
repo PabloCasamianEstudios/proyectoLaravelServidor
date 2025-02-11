@@ -201,7 +201,10 @@ Puedes usar las clases preestablecidas es Tailwind: `flex flex-row justify-betwe
 Puedes añadir CSS como si la tecnología fuese una mera sugerencia para ti.
 
 # 10º Crear modelos del CRUD
-Para empezar usamos en la terminal el comando: ```php artisan make:model miembro -a```
+Para empezar usamos en la terminal el comando: 
+```
+php artisan make:model miembro -a
+```
 y se genera el modelo automáticamente.
 
 Y añado en 'web.php' la nueva ruta con el controlador que acabo de generar.
@@ -276,4 +279,25 @@ public function run(): void
             MiembroSeeder::class,
         ]);
     }
+```
+
+Y utilizamos `php artisan db:seed` o `php artisan migrate:refresh --seed`
+para generarlas.
+
+
+# 13º PUNTOS DE RUPTURA
+
+Sirven para que dependiendo del tamaño se aplique un estilo u otro.
+
+```
+sm -> min
+md -> 768 px
+lg  -> 1024px
+xl -> 1280px
+2xl -> 1536px
+```
+
+_Ejemplo_:
+```
+class="md:hidden m:h-15v m:flex-row"
 ```
