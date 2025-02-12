@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('cod')->unique();
             $table->date('fecha_entrada');
             $table->integer('rango');
+            $table->timestamps();
         });
     }
 

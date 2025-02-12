@@ -42,7 +42,7 @@ Para ello, dentro del body los llamamos así:
 Creamos dentro de `/resources/views` las páginas de nuestro sitio.
 
 Para las páginas de mi sitio que estén más orientadas a su temática principal; añadir, eliminar, modificar o leer miembros del club,
-crearé una carpeta llamada *'club'*. 
+crearé una carpeta llamada *'miembros'*. 
 
 
 > [!IMPORTANT]  
@@ -221,15 +221,19 @@ Y añado en 'web.php' la nueva ruta con el controlador que acabo de generar.
 Al crear el controlador se habrá generado en `/database/migrations/` un fichero
 terminado en el nombre del controlador que creamos, en este caso *"miembros"*
 
-Dentro del Schema introducimos las cols de la tabla:
+Dentro de las migrations de esta tabla introducimos los datos que queramos en esta:
 ```
- Schema::create('miembros', function (Blueprint $table) {
+ public function up(): void
+    {
+        Schema::create('miembros', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->integer('cod')->unique();
             $table->date('fecha_entrada');
             $table->integer('rango');
+            $table->timestamps();
         });
+    }
 ```
 
 * ## Dar atributos al MODELO 
@@ -325,9 +329,18 @@ _Ejemplo_:
 class="md:hidden m:h-15v m:flex-row"
 ```
 
+Modificamos el método index del controlador de nuestro modelo:
+```	
+public function index()
+   {
+       $campos = Schema::getColumnListing('miembros');
+       $exclude=['created_at','updated_at'];
+       $campos = array_diff($campos, $exclude);
+       $filas = Miembro::select($campos)->get();
+       return view('miembros.index', compact('filas','campos'));
+   }
+```
 
-
-a
 
 
 
