@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoremiembroRequest;
 use App\Http\Requests\UpdatemiembroRequest;
 use App\Models\miembro;
+use Illuminate\Support\Facades\Schema;
 
 class MiembroController extends Controller
 {
@@ -12,9 +13,14 @@ class MiembroController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+   {
+       $campos = Schema::getColumnListing('miembros');
+       $exclude=['created_at','updated_at'];
+       $campos = array_diff($campos, $exclude);
+       $filas = Miembro::select($campos)->get();
+       return view('miembros.index', compact('filas','campos'));
+   }
+
 
     /**
      * Show the form for creating a new resource.
