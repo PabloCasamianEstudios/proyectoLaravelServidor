@@ -312,9 +312,9 @@ User::factory()->create([
 ```
 
 
-# 13º PUNTOS DE RUPTURA
+# 13º PUNTOS DE RUPTURA TAILWIND
 
-Sirven para que dependiendo del tamaño se aplique un estilo u otro.
+Sirven para que dependiendo del tamaño se aplique un estilo u otro. 
 
 ```
 sm -> min
@@ -341,6 +341,6 @@ public function index()
    }
 ```
 
-
+# 14º 
 
 
