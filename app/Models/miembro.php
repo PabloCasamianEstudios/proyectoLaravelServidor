@@ -11,5 +11,7 @@ class miembro extends Model{
     protected $table = 'miembros';
     protected $primaryKey = 'id';
     protected $keyType = 'integer';
-    protected $timestamp = false;
+    protected $timestamp = true;
+
+    public $fillable = ['nombre','cod','fecha_entrada','rango'];
 }

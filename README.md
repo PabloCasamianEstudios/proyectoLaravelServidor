@@ -341,6 +341,57 @@ public function index()
    }
 ```
 
-# 14º 
+# 14º CREAR, ELIMINAR Y MODIFICAR
+
+Todos estos procesos tienen una estructura similar; agregar un poco de código a los métodos que se generan automáticamente gracias a Laravel, crear un archivo blade para la acción, añadirle código e interconectarlo con la aplicación mediante rutas.
+
+## CREAR
+
+Creo dentro de `~/views/miembros` un nuevo fichero `create.blade.php`
+Dentro le aplicamos el layout y estructuramos el formulario.
+
+En los parámetros del formulario, hacemos que su acción sea redirigir a **miembros.store**:
+```
+        <form action=" {{route('miembros.store')}}" method="post">
+```
+Dentro del formulario separo en un div cada campo, siguiendo una estructura como esta de ejemplo:
+```
+     <div>
+        <x-input-label for="nombre" value="__('Nombre')" />
+        <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" required autofocus autocomplete="username" />
+    </div>
+```
+
+*Nota:* Es importante recordar las id y nombres, por lo que es recomendable usar nombres significativos.
+
+Y modifico el método create y el método store en el controlador: 
+```
+public function create()
+    {
+        return view('miembros.create'); 
+    }
+```
+
+```
+public function store(StoremiembroRequest $request)
+    {
+        $datos = $request->input();
+        $miembro = new Miembro($datos);
+        $miembro->save();
+        return redirect()->route('miembros.index');
+    }
+```
+
+Modifico en `/app/http/Request/StroemiembroRequest.php` el método authorize de false a true.
+
+y añado al modelo `Miembro.php` 
+```
+public $fillable = ['nombre','cod','fecha_entrada','rango'];
+```
+para permitir inserciones en masa.
+
+
+
+
 
 
