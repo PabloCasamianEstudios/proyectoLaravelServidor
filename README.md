@@ -357,7 +357,7 @@ En los parámetros del formulario, hacemos que su acción sea redirigir a **miem
 Dentro del formulario separo en un div cada campo, siguiendo una estructura como esta de ejemplo:
 ```
      <div>
-        <x-input-label for="nombre" value="__('Nombre')" />
+        <x-input-label for="nombre" value="old('Nombre')" />
         <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" required autofocus autocomplete="username" />
     </div>
 ```
@@ -382,6 +382,25 @@ public function store(StoremiembroRequest $request)
     }
 ```
 
+si la fecha da problemas como fue mi caso, mejor prevenimos en dolores de cabeza:
+```
+    public function store(StoremiembroRequest $request)
+{
+    $datos = $request->input();
+
+    if (!isset($datos['fecha_entrada'])) {
+        $datos['fecha_entrada'] = now()->toDateString(); 
+    }
+
+    $miembro = new Miembro($datos);
+    $miembro->save();
+    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto" );
+
+    return redirect()->route('miembros.index');
+}
+
+```
+
 Modifico en `/app/http/Request/StroemiembroRequest.php` el método authorize de false a true.
 
 y añado al modelo `Miembro.php` 
@@ -391,7 +410,69 @@ public $fillable = ['nombre','cod','fecha_entrada','rango'];
 para permitir inserciones en masa.
 
 
+En `storemiembroRequest.php` añado normas para los datos de los miembros:
+```
+ public function rules()
+    {
+        return [
+            'nombre' => 'required|string|max:255',
+            'cod' => 'required|string|max:255|unique:miembros,cod',
+            'fecha_entrada' => 'nullable|date',
+            'rango' => 'required|integer|between:1,5',
+        ];
+    }
+```
 
+Adicionalmente puedo crear un método messages como este:
+```
+ public function messages(): array {
+        return [
+            'name.required' => 'El nombre es obligatorio',
+            'name.string' => 'El nombre debe ser una cadena',
+            'name.max' => 'El nombre no puede exceder los 255 caracteres',
+            'cod.required' => 'El código es obligatorio',
+            'cod.number' => 'El código debe ser un número',
+            'fecha_entrada.required' => 'La fecha de entrada es obligatoria',
+            'rango.required' => 'El rango es obligatorio',
+            'rango.number' => 'El rango debe ser un número',
+            'rango.max' => 'El rango no puede exceder los 5 valores'
+        ];
+    }
+```
+que lo genera automáticamente visual studio con la extensión de laravel y ayuda a saber que problema estás teniendo a la hora de insertar un nuevo usuario.
+En este caso habrá que añadir debajo de cada campo en el formulario:
+```
+@error('nombre')
+    <div class="text-sm text-red-600">
+        {{$message}}
+    </div>
+@enderror
+```
 
+# 15º MOSTRAR MENSAJES
 
+Añadir donde queramos los mensajes:
+```
+   @if (session("mensaje"))
 
+    <div>
+        <div class="alert alert-success">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{{session("mensaje")}}</span>
+        </div>
+    </div>
+    </div>
+```
+en mi caso index.blade.php dentro de **miembros**
+
+y `    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto" );` dentro del método store 

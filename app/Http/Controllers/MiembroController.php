@@ -38,13 +38,13 @@ class MiembroController extends Controller
 {
     $datos = $request->input();
 
-    // 🔥 SOLUCIÓN: Aseguramos que 'fecha_entrada' se guarde correctamente
     if (!isset($datos['fecha_entrada'])) {
-        $datos['fecha_entrada'] = now()->toDateString(); // Fecha actual si no está presente
+        $datos['fecha_entrada'] = now()->toDateString(); 
     }
 
     $miembro = new Miembro($datos);
     $miembro->save();
+    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto" );
 
     return redirect()->route('miembros.index');
 }
