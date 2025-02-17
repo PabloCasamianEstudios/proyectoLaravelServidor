@@ -19,7 +19,7 @@ class miembroFactory extends Factory
         return [
 
             "nombre"=>$this->faker->name(),
-            "cod"=>$this->faker->unique()->numberBetween(0,6666),
+            "tipo_sangre"=>$this->faker->unique()->numberBetween(0,6666),
             "fecha_entrada"=>$this->faker->date(),
             "rango"=>$this->faker->numberBetween(1,5)
         ];

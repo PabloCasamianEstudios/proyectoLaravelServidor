@@ -23,7 +23,7 @@ class StoremiembroRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:255',
-            'cod' => 'required|string|max:255|unique:miembros,cod',
+            'tipo_sangre' => ['required', 'regex:/^(A|B|AB|O)(\+|\-)$/'],
             'fecha_entrada' => 'nullable|date',
             'rango' => 'required|integer|between:1,5',
         ];
@@ -35,8 +35,8 @@ class StoremiembroRequest extends FormRequest
             'name.required' => 'El nombre es obligatorio',
             'name.string' => 'El nombre debe ser una cadena',
             'name.max' => 'El nombre no puede exceder los 255 caracteres',
-            'cod.required' => 'El código es obligatorio',
-            'cod.number' => 'El código debe ser un número',
+            'tipo_sangre.required' => 'El tipo de sangre es obligatorio',
+            'tipo_sangre.regex' => 'Debe ser un tipo de sangre válido',
             'fecha_entrada.required' => 'La fecha de entrada es obligatoria',
             'rango.required' => 'El rango es obligatorio',
             'rango.number' => 'El rango debe ser un número',

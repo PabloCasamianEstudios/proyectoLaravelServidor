@@ -7,7 +7,7 @@
                 <div>
                     <x-input-label for="nombre" value="Nombre" />
                     <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="{{old('nombre')}}" required autofocus autocomplete="username" />
-                    
+
                     @error('nombre')
                         <div class="text-sm text-red-600">
                             {{ $message }}
@@ -16,13 +16,13 @@
                 </div>
 
                 <div>
-                    <x-input-label for="cod" value="código" />
-                    <x-text-input id="cod" class="block mt-1 w-full" type="text" name="cod" value="{{ old('cod') }}" required autofocus autocomplete="codigo" />
+                    <x-input-label for="tipo_sangre" value="Tipo de Sangre" />
+                    <x-text-input id="tipo_sangre" class="block mt-1 w-full" type="text" name="tipo_sangre" value="{{ old('tipo_sangre') }}" required autofocus autocomplete="tipo_sangre" />
 
-                    @error('cod')
-                        <div class="text-sm text-red-600">
-                            {{ $message }}
-                        </div>
+                    @error('tipo_sangre')
+                    <div class="text-sm text-red-600">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
 
@@ -35,7 +35,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                
+
                 </div>
 
                 <div>

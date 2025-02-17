@@ -36,6 +36,11 @@ class MiembroController extends Controller
      */
     public function store(StoremiembroRequest $request)
 {
+    /*//para que la sangre sea un tipo válido
+    $request->validate([
+        'tipo_sangre' => ['required', 'regex:/^(A|B|AB|O)(\+|\-)$/'],
+    ]);*/
+
     $datos = $request->input();
 
     if (!isset($datos['fecha_entrada'])) {

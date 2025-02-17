@@ -13,5 +13,5 @@ class miembro extends Model{
     protected $keyType = 'integer';
     protected $timestamp = true;
 
-    public $fillable = ['nombre','cod','fecha_entrada','rango'];
+    public $fillable = ['nombre','tipo_sangre','fecha_entrada','rango'];
 }
