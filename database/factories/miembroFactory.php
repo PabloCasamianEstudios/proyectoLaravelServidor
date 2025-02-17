@@ -16,10 +16,13 @@ class miembroFactory extends Factory
      */
     public function definition(): array
     {
+
+        $sangres = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+
         return [
 
             "nombre"=>$this->faker->name(),
-            "tipo_sangre"=>$this->faker->unique()->numberBetween(0,6666),
+            "tipo_sangre"=>$this->faker->randomElement($sangres),
             "fecha_entrada"=>$this->faker->date(),
             "rango"=>$this->faker->numberBetween(1,5)
         ];
