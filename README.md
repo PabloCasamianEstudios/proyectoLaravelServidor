@@ -449,7 +449,43 @@ En este caso habrá que añadir debajo de cada campo en el formulario:
 @enderror
 ```
 
+## ELIMINAR
+
+Para eliminar se llama al método destroy del controlador (Desde ek formulario, tal que así):
+```
+action="{{ route('miembros.destroy', $fila->id) }}" 
+```
+
+Y añadimos código al método del controlador:
+```
+public function destroy(miembro $miembro)
+    {
+        $miembro->delete();
+        session()->flash("mensaje", "El miembro $miembro->nombre ha sido eliminado");
+        return redirect()->route('miembros.index');
+    }
+```
+
+
+
 # 15º MOSTRAR MENSAJES
+
+Para esto necesitaremos **sweetalerts**
+
+Para instalarlo ejecutamos:
+```
+npm install sweetalert --save
+```
+
+y lo importamos en el fichero `/resources/js/app.js`
+```
+import swal from 'sweetalert';
+```
+
+y actualizamos el vite de nuestro layout:
+```
+    @vite(["resources/css/app.css", "resources/js/app.js"])
+```
 
 Añadir donde queramos los mensajes:
 ```
@@ -476,3 +512,9 @@ Añadir donde queramos los mensajes:
 en mi caso index.blade.php dentro de **miembros**
 
 y `    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto" );` dentro del método store 
+
+
+
+
+
+

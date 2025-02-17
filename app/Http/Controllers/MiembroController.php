@@ -28,7 +28,7 @@ class MiembroController extends Controller
      */
     public function create()
     {
-        return view('miembros.create'); 
+        return view('miembros.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class MiembroController extends Controller
     $datos = $request->input();
 
     if (!isset($datos['fecha_entrada'])) {
-        $datos['fecha_entrada'] = now()->toDateString(); 
+        $datos['fecha_entrada'] = now()->toDateString();
     }
 
     $miembro = new Miembro($datos);
@@ -79,6 +79,8 @@ class MiembroController extends Controller
      */
     public function destroy(miembro $miembro)
     {
-        //
+        $miembro->delete();
+        session()->flash("mensaje", "El miembro $miembro->nombre ha sido eliminado");
+        return redirect()->route('miembros.index');
     }
 }

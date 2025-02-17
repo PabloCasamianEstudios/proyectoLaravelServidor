@@ -54,19 +54,26 @@
         </table>
     </div>
 
-    <script>
-        function confirmDelete(id) {
-            swal({
-                title: "borrar ",
-                text: "Esta acción no se puede recuperar",
-                icon: "warning",
-                buttons: true
-            })
-            .then((ok) => {
-                if (ok) {
-                    document.getElementById("formulario" + id).submit();
-                }
-            });
-        }
-    </script>
+        <script>
+            function confirmDelete (id){
+                swal({
+                    title:"¿Confirmar borrado?",
+                    text:"Esta acción no se puede deshacer",
+                    icon: "warning",
+                    buttons:true
+                }).then(function (ok){
+                    if (ok) {
+                        let formulario = document.getElementById("formulario" + id);
+                        formulario.submit();
+                    }
+                })
+
+            }
+            setTimeout( ()=>{
+                var message = document.getElementById("message")
+                message.style.transition="opacity 0.5s"
+                message.style.opacity='0'
+                setTimeout(()=>message.remove,500)
+            },5000);
+        </script>
 </x-layouts.layout>

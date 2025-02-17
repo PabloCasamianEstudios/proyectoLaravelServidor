@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\miembro>
  */
-class MiembroFactory extends Factory
+class miembroFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class MiembroFactory extends Factory
         return [
 
             "nombre"=>$this->faker->name(),
-            "cod"=>$this->faker->unique()->numberBetween(0,666),
+            "cod"=>$this->faker->unique()->numberBetween(0,6666),
             "fecha_entrada"=>$this->faker->date(),
             "rango"=>$this->faker->numberBetween(1,5)
         ];
