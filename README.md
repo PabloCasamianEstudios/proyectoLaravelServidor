@@ -576,6 +576,83 @@ y `    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto"
 
 
 
+# 16º LENGUAJES DENTRO DEL SITIO
+
+Lo primero, instalar lo necesario:
+```
+sudo apt install php-bcmath
+```
+_*Este dió problemas en clase, y mejor prevenir que curar._
+
+```
+composer require laravel-lang/lang
+```
+
+De ahí hacemos:
+```
+php artisan lang:publish
+```
+esto creará la carpeta lang
+
+y
+```
+php artisan lang:add es
+```
+para añadir los idiomas que queramos.
 
 
+---
+Una vez hecho todo esto, vamos a configurar lo necesario, lo primero necesitaremos un fichero de configuración `/config/languages.php`
+Dentro meteteremos un array asociativo para los lenguajes, utilizaré este de ejemplo para los principales idiomas que me interesan:
+```
+return [
+   "es"=>[
+       "name"=>"Español",
+       "flag"=>"🇪🇸"
+   ],
+   "fr"=>[
+       "name"=>"Françe",
+       "flag"=>"🇫🇷"
+   ],
+   "en"=>[
+       "name"=>"English",
+       "flag"=>"🇬🇧"
+   ]
+]
+```
+
+Creo el layout que usaré para idiomas en `/resources/views/components/layouts`
+
+Esta será su estructura:
+```
+<x-dropdown>
+    <x-slot name="trigger">
+        <div class=" text-white text-2xl bg-gray-900 p-4">
+            <span class="flex flex-row space-x-2">
+                {{config("languages")[App::getLocale()]['name']}}
+                {{config("languages")[App::getLocale()]['flag']}}
+            </span>
+        </div>
+    </x-slot>
+    <x-slot name="content">
+        @foreach(config("languages") as $code =>$lang)
+            <span class="flex flex-row space-x-2 hover:cursor-pointer ">
+              <a href="{{route('language',$code)}}" class ="hover:bg-gray-300 ">
+                  {{$lang['name']}}
+                  {{$lang['flag']}}
+                </a>
+            </span>
+
+        @endforeach
+
+    </x-slot>
+
+
+</x-dropdown>
+```
+1- `x-dropdown` es un componente laravel para crear desplegables
+2- `Slot trigger` es el contenido que se muestra inicialmente antes de hacer click en el desplegable
+* `{{ config("languages")[App::getLocale()]['name'] }}` pilla del fichero config que creamos el nombre
+3- `Slot content` será lo que hay dentro del desplegable
+* con el for each recorre todos los idiomas para que se muestren uno por uno
 
