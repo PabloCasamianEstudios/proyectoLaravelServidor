@@ -43,6 +43,6 @@
         </div>
     </nav>
     <aside>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved by Pablo Casamián</p>
+        <p>Copyright © <?php echo date("Y"); ?> - All right reserved by Pablo Casamián</p>
     </aside>
 </footer>

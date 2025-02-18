@@ -9,7 +9,7 @@ flex flex-row md:flex-row justify-around items-center p-3">
             {{auth()->user()->name}}
             <form action="{{route("logout")}}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-error">Logout</button>
+                <button type="submit" class="btn btn-error">{{__("logout")}}</button>
             </form>
         @endauth
         @guest
@@ -43,8 +43,8 @@ flex flex-row md:flex-row justify-around items-center p-3">
         @endauth
         @guest
             <div class="flex flex-row gap-5">
-                <a class="btn btn-glass" href="login">Login</a>
-                <a class="btn btn-glass" href="register">Register</a>
+                <a class="btn btn-glass" href="login">{{__("Login")}}</a>
+                <a class="btn btn-glass" href="register">{{__("Register")}}</a>
             </div>
         @endguest
         </div>
