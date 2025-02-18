@@ -6,38 +6,36 @@
             <div class="hero-overlay bg-opacity-60"></div>
             <div class="hero-content text-neutral-content text-center">
                 <div class="max-w-md">
-                    <h1 class="mb-5 text-5xl font-bold">¡Bienvenido!</h1>
+                    <h1 class="mb-5 text-5xl font-bold">{{ __('¡Bienvenido!') }}</h1>
                     <p class="mb-5">
-                        Al club secreto secretoso, más secreto y secretoso
-                        de todos los clubs secretos y secretosos.
+                        {{ __('Al club secreto secretoso, más secreto y secretoso de todos los clubs secretos y secretosos.') }}
                     </p>
-                    <a class="btn btn-warning hover:scale-110 transition-transform duration-300" href="{{route('about')}}">Más sobre nosotros</a>
+                    <a class="btn btn-warning hover:scale-110 transition-transform duration-300" href="{{route('about')}}">{{ __('Más sobre nosotros') }}</a>
                 </div>
             </div>
         </div>
     @endguest
 
     @auth
-            <div class="flex items-center flex-col justify-center min-h-screen">
+        <div class="flex items-center flex-col justify-center min-h-screen">
+            <h1 class="text-3xl font-bold">{{ __('Administrar Miembros del Club') }}</h1>
+            <div class="animacionScaleHover p-4 card bg-base-100 image-full w-96 shadow-xl">
+                <figure>
+                    <img
+                        src="{{asset('/images/eye.png')}}"
+                        alt="{{ __('Administrar Miembros del club') }}" />
+                </figure>
+                <div class="card-body">
+                    <img
+                        src="{{asset('/images/eye.png')}}"/>
 
-                <h1 class=" text-3xl font-bold ">Administrar Miembros del Club</h1>
-                <div class="animacionScaleHover p-4 card bg-base-100 image-full w-96 shadow-xl">
-                    <figure>
-                        <img
-                            src="{{asset("/images/eye.png")}}"
-                            alt="Administrar Miembros del club" />
-                    </figure>
-                    <div class="card-body">
-                        <img
-                            src="{{asset("/images/eye.png")}}"/>
-
-                        <h2 class="card-title">CRUD Miembros!</h2>
-                        <p> Gestión del club
-                        <div class="card-actions justify-end">
-                            <a class="btn btn-warning" href="{{route("miembros.index")}}">Ver miembros</a>
-                        </div>
+                    <h2 class="card-title">{{ __('CRUD Miembros!') }}</h2>
+                    <p>{{ __('Gestión del club') }}</p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-warning" href="{{route('miembros.index')}}">{{ __('Ver miembros') }}</a>
                     </div>
                 </div>
             </div>
+        </div>
     @endauth
 </x-layouts.layout>
