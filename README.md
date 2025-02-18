@@ -466,7 +466,68 @@ public function destroy(miembro $miembro)
     }
 ```
 
+## EDITAR
 
+Añado al index este fragmento de código por cada tupla para tener un botón de editar asociado a cada miembro
+```
+<td>
+    <a href="{{route("miembros.edit", $fila->id)}}">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hover:text-blue-600 size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+    </svg>
+    </a>
+</td>
+```
+
+y en el controlador `MiembroController.php` devuelvo la view de `edit.blade.php`
+
+Dicha vista deberá ser un formulario para modificar los parámetros de un miembro existente.
+
+Aprovecho que estoy en el controlador para modificar el método update:
+```
+    public function update(UpdatemiembroRequest $request, miembro $miembro)
+    {
+        $miembro->update($request->input());
+        session()->flash("mensaje","El miembro $miembro->nombre ha sido modificado");
+        return redirect()->route('miembros.index');
+    }
+```
+
+**EDIT.BLADE.PHP**
+
+Usaremos un formulario con este "esqueleto" al que posteriormente implementaremos cada campo.
+```
+<form action="{{route("miembros.update", $miembro->id)}}" method="POST">
+            @method('PUT')
+            @csrf
+       </form>
+```
+1- El formulario pasará el ID del miembro como parámetro de ruta, generando una URL con la acción de actualización
+2- `@method('PUT')` Sirve para actualizar un recurso de la base de datos
+3- `@csrf` ya lo mencioné antes, es para que solo los usuarios autenticados puedan acceder.
+
+
+Cada campo seguirá esta estructura:
+```
+<div>
+   <x-input-label for="nombre" value="Nombre"/>
+   <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre"
+   value="{{ $miembro->nombre}}"/>
+   @error("nombre")
+   <div class="text-sm text-red-600">
+       {{$message}}
+   </div>
+   @enderror
+</div>
+```
+
+Casi un paralelismo del `create.blade.php`, lo interesante es: `value="{{ $miembro->nombre}}`
+De este modo el valor por defecto del campo serán los valores anteriores de los atributos del miembro seleccionado.
+
+
+> [!WARNING]
+> IMPORTANTE IR A `/app/Http/Request/Updatemiembro.php` y hacr que el método `authorize()` sea true
+> O perderás tiempo y pelo.
 
 # 15º MOSTRAR MENSAJES
 

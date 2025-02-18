@@ -40,7 +40,7 @@
 
                 <div>
                     <x-input-label for="rango" value="Rango (del 1 al 5)" />
-                    <x-text-input id="rango" class="block mt-1 w-full" type="text" name="rango" value="{{ old('rango') }}" required autofocus autocomplete="rango" />
+                    <x-text-input id="rango" class="block mt-1 w-full" type="number" name="rango" value="{{ old('rango') }}" required autofocus autocomplete="rango" />
 
                     @error('rango')
                         <div class="text-sm text-red-600">

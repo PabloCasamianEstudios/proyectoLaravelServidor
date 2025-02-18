@@ -68,7 +68,7 @@ class MiembroController extends Controller
      */
     public function edit(miembro $miembro)
     {
-        //
+        return view('miembros.edit', compact('miembro'));
     }
 
     /**
@@ -76,7 +76,9 @@ class MiembroController extends Controller
      */
     public function update(UpdatemiembroRequest $request, miembro $miembro)
     {
-        //
+        $miembro->update($request->input());
+        session()->flash("mensaje","El miembro $miembro->nombre ha sido modificado");
+        return redirect()->route('miembros.index');
     }
 
     /**
