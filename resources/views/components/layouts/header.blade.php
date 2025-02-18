@@ -2,7 +2,7 @@
 flex flex-row md:flex-row justify-around items-center p-3">
 
     <img class="w-20 max-h-full p-1 md:max-h-full" src="{{asset ("images/logo.png")}}" alt="logo">
-    <h1 class="hidden md:block text-white-900 text-7xl">CLUB SECRETO</h1>
+    <h1 class="hidden md:block text-white-900 text-7xl">{{__("CLUB SECRETO")}}</h1>
     {{--Header pc--}}
     <div class="hidden md:flex flex-row space-x-3">
         @auth
@@ -21,6 +21,7 @@ flex flex-row md:flex-row justify-around items-center p-3">
 
 
         @endguest
+            <x-layouts.lang />
     </div>
 
     {{--Header movil--}}

@@ -656,3 +656,71 @@ Esta será su estructura:
 3- `Slot content` será lo que hay dentro del desplegable
 * con el for each recorre todos los idiomas para que se muestren uno por uno
 
+
+> [!IMPORTANT]
+> Creamos el controlador de idiomas
+```
+php artisan make:controller LanguageController
+```
+Vamos a `/app/Http/Controllers/LanguageController.php` y añado el método invoke:
+```
+public function __invoke(Request $request, string $locale) {
+        session()->put('locale', $locale);
+        return redirect()->back();
+    }
+```
+
+La explicación sería: Laravel permite acceder a las sesiones con `session()`
+así que aprovechamos esto para almacenar el nuevo valor (el nuevo idioma)
+
+Para concluir el código, añadimos la ruta a `web.php`
+```
+Route::get("lang/{language}", LanguageController::class)->name('language');
+```
+
+y llamamos desde el header al componente con `<x-layouts.lang />`
+
+Ahora quiero que con un middleware esa variable se adapte a la variable de configuracion general.
+Para ello, primero ejecuto:
+```
+php artisan make:Middleware LanguageMiddleware
+```
+
+Este aparecerá en `/app/Http/Middleware`
+y modificamos el método handle tal que así: 
+```
+public function handle(Request $request, Closure $next): Response
+    {
+        if (session()->has("locale")) {
+        App::setLocale(session()->get("locale"));
+        }
+        return $next($request);
+    }
+```
+Simplemente establece un nuevo valor en el .env
+
+Para añadir la función del Middleware al controlador debemos modificar `/bootstrap/app.php`
+y editar este segmento de código añadiendo el nuevo middleware, quedaría así:
+```
+->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(LanguageMiddleware::class);
+    })
+```
+
+
+# 17º AÑADIR LOS IDIOMAS AL SITIO
+
+Si todo lo anterior funcionó, en la carpeta `/lang` habrá un **.json** 
+por cada idioma que hemos instalado.
+
+Estos ficheros funcionan por clave valor, por lo que deberemos establecer una misma clave en todos ellos, 
+y asociarles un valor dependiendo del idioma.
+__EJEMPLO:__
+`es.json:` **"CLAVE":** *ejemplo*
+`en.json:` **"CLAVE":** *example*
+
+Allá donde ponga la key CLAVE, su valor será uno u otro dependiendo del idioma seleccionado.
+
+Para aprovechar esta funcionalidad usaremos la función de laravel `{{__('CLAVE')}}`
+En el html final será sustituido por el valor asociado en los `.json`
+
