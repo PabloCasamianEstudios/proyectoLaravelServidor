@@ -1,6 +1,6 @@
 <x-layouts.layout title="NEWS">
 {{--SI SOBRA TIEMPO, ME GUSTARÍA CREAR UN MODEL DE NEW, QUE TENGA TITULO Y CONTENIDO O ALGO ASÍ --}}
-        <div class="bg-gray-200 min-h-screen flex justify-center items-center p-10">
+        <div class="bg-yellow-300 min-h-screen flex justify-center items-center p-10">
             <div class="bg-white shadow-lg rounded-2xl p-8 max-w-3xl w-full">
                 <h1 class="text-3xl font-bold text-center text-indigo-700 mb-6">{{ __('Últimas Noticias del Club Secreto Secretoso') }}</h1>
 

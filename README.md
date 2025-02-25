@@ -724,3 +724,67 @@ Allá donde ponga la key CLAVE, su valor será uno u otro dependiendo del idioma
 Para aprovechar esta funcionalidad usaremos la función de laravel `{{__('CLAVE')}}`
 En el html final será sustituido por el valor asociado en los `.json`
 
+# 18 CONECTAR 2 TABLAS
+
+Para ello primero debemos repetir la creación y configuración de un modelo y sus migraciones.
+En mi caso será de `Evento`
+En sus migraciones como dato interesante aparece la **foreign key** de otra tabla:
+```
+$table->foreignId('miembro_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+```
+
+En el seeder de miembro hacemos que se ejecute una función, para sacar los eventos a los que acude un miembro: 
+```
+Miembro::factory()->count(50)->create()->each(function (miembro $miembro){
+            $numEventos = rand(0,5);
+            if ($numEventos > 0)
+                $this->createEventosMiembro($miembro, $numEventos);
+        });
+```
+
+## Creamos un config `eventos.php' y añadimos un array con los eventos del club en este caso.
+
+Con este método creamos los eventos a los que acude cada miembro: (seguimos en el seeder)
+```
+private function createEventosMiembro(miembro $miembro, int $numEventos){
+        $tipos = collect(['mundano','extremo','religioso']);
+        $niveles = collect(['0','1','2','3','4','5','6','7','8','9','10']);
+
+        $eventos = collect(config("eventos"))->shuffle()->take($numEventos);
+
+        $eventos->each(fn($evento_acudido) => $miembro->eventos()->create([
+            "evento" => $evento_acudido,
+            "tipo" => $tipos->random(),
+            "nivel" => $niveles->random()
+
+        ]));
+    }
+```
+
+
+
+Al modelo de miembro añadimos este método para saber cuandos eventos tiene:
+```
+public function eventos(){
+        return $this->hasMany(Evento::class);
+    }
+```
+
+y vamos a hacer el proceso inverso en los eventos:
+```
+public function miembro(){
+        return $this->belongsTo(miembro::class);
+    }
+```
+
+
+# 19 VER TODOS LOS DADOS DE UN ALUMNO
+
+Añadimos al `index` de miembros: 
+```
+ <td> <a href="{{route("miembros.show", $fila->id)}}">Ver</a></td>
+ ```
+ Funcionará igual que el botón de eliminar o el de modificar.
+
+
+

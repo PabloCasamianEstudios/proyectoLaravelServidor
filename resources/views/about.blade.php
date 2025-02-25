@@ -32,7 +32,7 @@
                 </p>
 
                 <div class="text-center mt-6">
-                    <a href="{{ route('miembros.create') }}" class="text-indigo-600 font-semibold text-lg hover:underline">{{ __('Unirte al Club Secreto Secretoso') }}</a>
+                    <a href="{{ route('register') }}" class="text-indigo-600 font-semibold text-lg hover:underline">{{ __('Unirte al Club Secreto Secretoso') }}</a>
                 </div>
             </div>
         </div>

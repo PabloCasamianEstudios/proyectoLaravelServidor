@@ -14,4 +14,7 @@ class miembro extends Model{
     protected $timestamp = true;
 
     public $fillable = ['nombre','tipo_sangre','fecha_entrada','rango'];
+    public function eventos(){
+        return $this->hasMany(Evento::class);
+    }
 }
