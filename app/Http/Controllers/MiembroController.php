@@ -85,12 +85,30 @@ class MiembroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatemiembroRequest $request, miembro $miembro)
-    {
-        $miembro->update($request->input());
-        session()->flash("mensaje","El miembro $miembro->nombre ha sido modificado");
-        return redirect()->route('miembros.index');
+    public function update(UpdateMiembroRequest $request, Miembro $miembro)
+{
+
+    if ($request->has('eventos')) {
+        $eventosSolicitud = collect($request->input('eventos'));
+     
+        // Añadir o actualizar
+        $eventosSolicitud->each(function ($evento) use ($miembro, $request) {
+            $miembro->eventos()->updateOrCreate(
+                ['evento' => $evento],
+                [
+                    'tipo' => $request->input('tipo')[$evento] ?? null,
+                    'nivel' => $request->input('nivel')[$evento] ?? null, 
+                ]
+            );
+        });
+    } else {
+        $miembro->eventos()->delete();
     }
+
+    session()->flash('mensaje', "El miembro $miembro->nombre ha sido modificado");
+
+    return redirect()->route('miembros.index');
+}
 
     /**
      * Remove the specified resource from storage.
