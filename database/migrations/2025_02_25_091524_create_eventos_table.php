@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
-            $table->string('evento');
-            $table->enum("tipo",['mundano','extremo','religioso','demoniaco','???']);
+            $table->string('evento')->nullable();
+            $table->enum("tipo",['mundano','extremo','religioso','demoniaco','???'])->nullable();
             $table->enum("nivel",['0','1','2','3','4','5','6','7','8','9','10'])->nullable();
 
             $table->foreignId('miembro_id')->constrained()->onUpdate('cascade')->onDelete('cascade');

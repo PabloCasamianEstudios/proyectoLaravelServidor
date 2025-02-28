@@ -10,6 +10,9 @@ class Evento extends Model
     /** @use HasFactory<\Database\Factories\EventoFactory> */
     use HasFactory;
 
+    protected $table = 'eventos';
+    protected $fillable = ['eventos', 'tipo', 'nivel'];
+
     public function miembro(){
         return $this->belongsTo(miembro::class);
     }

@@ -34,25 +34,36 @@ class MiembroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoremiembroRequest $request)
+    public function store(StoreMiembroRequest $request)
 {
-    /*//para que la sangre sea un tipo válido
-    $request->validate([
-        'tipo_sangre' => ['required', 'regex:/^(A|B|AB|O)(\+|\-)$/'],
-    ]);*/
-
-    $datos = $request->input();
-
-    if (!isset($datos['fecha_entrada'])) {
-        $datos['fecha_entrada'] = now()->toDateString();
-    }
-
+    $datos = $request->validated(); // Usar datos validados
     $miembro = new Miembro($datos);
     $miembro->save();
-    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto" );
 
+    // Eliminar eventos anteriores asociados al miembro
+    $miembro->eventos()->delete();
+
+    // Verificar si se ha enviado la lista de eventos
+    if ($request->has('eventos')) {
+        $eventos = collect($request->input('eventos'));
+
+        // Iterar sobre los eventos y crear los registros correspondientes
+        $eventos->each(function ($evento) use ($miembro, $request) {
+            $miembro->eventos()->create([
+                'evento' => $evento, // Nombre del evento
+                'tipo' => $request->input('tipo')[$evento] ?? null, // Tipo del evento
+                'nivel' => $request->input('nivel')[$evento] ?? null, // Nivel del evento
+            ]);
+        });
+    }
+
+    // Mensaje de éxito
+    session()->flash('mensaje', "$miembro->nombre es ahora miembro del culto");
+
+    // Redirigir a la lista de miembros
     return redirect()->route('miembros.index');
 }
+
 
 
     /**
