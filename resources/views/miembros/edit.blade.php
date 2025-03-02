@@ -52,19 +52,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(config("eventos") as $evento)
+                                @foreach(config("eventos") as $eventoNombre)
                                     @php
-                                        // Obtener el evento actual del miembro (si existe)
-                                        $eventoActual = $miembro->eventos->where('evento', $evento)->first();
+                                        $eventoActual = $miembro->eventos->firstWhere('evento', $eventoNombre);
                                     @endphp
                                     <tr class="border-b">
                                         <td class="py-2 px-3 flex items-center">
-                                            <input type="checkbox" value="{{ $evento }}" name="eventos[]" class="mr-2"
+                                            <input type="checkbox" value="{{ $eventoNombre }}" name="eventos[]" class="mr-2"
                                                 @if($eventoActual) checked @endif>
-                                            {{ $evento }}
+                                            {{ $eventoNombre }}
                                         </td>
                                         <td class="py-2 px-3">
-                                            <select class="text-sm h-8 rounded-md border-gray-300" name="tipo[{{ $evento }}]">
+                                            <select class="text-sm h-8 rounded-md border-gray-300" name="tipo[{{ $eventoNombre }}]">
                                                 <option value="mundano" @if($eventoActual && $eventoActual->tipo === 'mundano') selected @endif>Mundano</option>
                                                 <option value="extremo" @if($eventoActual && $eventoActual->tipo === 'extremo') selected @endif>Extremo</option>
                                                 <option value="religioso" @if($eventoActual && $eventoActual->tipo === 'religioso') selected @endif>Religioso</option>
@@ -73,7 +72,7 @@
                                             </select>
                                         </td>
                                         <td class="py-2 px-3">
-                                            <select class="text-sm h-8 rounded-md border-gray-300" name="nivel[{{ $evento }}]">
+                                            <select class="text-sm h-8 rounded-md border-gray-300" name="nivel[{{ $eventoNombre }}]">
                                                 @for ($i = 0; $i <= 10; $i++)
                                                     <option value="{{ $i }}" @if($eventoActual && $eventoActual->nivel == $i) selected @endif>{{ $i }}</option>
                                                 @endfor

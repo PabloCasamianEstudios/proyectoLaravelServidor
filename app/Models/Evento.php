@@ -11,7 +11,7 @@ class Evento extends Model
     use HasFactory;
 
     protected $table = 'eventos';
-    protected $fillable = ['eventos', 'tipo', 'nivel'];
+    protected $fillable = ['evento', 'tipo', 'nivel'];
 
     public function miembro(){
         return $this->belongsTo(miembro::class);

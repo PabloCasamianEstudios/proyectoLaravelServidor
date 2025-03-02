@@ -1,6 +1,7 @@
 <x-layouts.layout>
     <!-- Mensaje de éxito -->
-    @if (session("mensaje"))
+    @if (session("
+    "))
         <div role="alert" class="alert alert-success bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" id="mensaje">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current mr-3" fill="none" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
