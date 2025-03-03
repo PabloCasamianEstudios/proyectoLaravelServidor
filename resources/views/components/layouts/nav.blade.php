@@ -8,4 +8,7 @@
     <a class="text-xl text-gray-800 font-semibold hover:text-white transition duration-300 ease-in-out transform hover:scale-105" href="{{ route('news') }}">
         {{ __("novedades") }}
     </a>
+    <a class="text-xl text-gray-800 font-semibold hover:text-white transition duration-300 ease-in-out transform hover:scale-105" href="{{ route('contact') }}">
+        {{ __("contact") }}
+    </a>
 </div>
