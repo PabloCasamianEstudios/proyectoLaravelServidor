@@ -4,6 +4,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 
 Route::get('/', function () {
@@ -31,5 +32,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get("lang/{language}", LanguageController::class)->name('language');
+
+// CONTACTO
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
 
 require __DIR__.'/auth.php';
